@@ -1,18 +1,16 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Helmet, HelmetProvider } from 'react-helmet-async'
+// import { RouterProvider } from 'react-router-dom'
+import { router } from './router'
+import { RouterProvider } from 'react-router-dom'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <span>
-          Página inicial
-        </span>
-      </div>
+       <HelmetProvider>
+        <Helmet title='Recomendador'/>
+          
+        <RouterProvider router={router} />
+      </HelmetProvider>
     </>
   )
 }
