@@ -34,3 +34,12 @@ class UsuariosController:
             return usuarios
         except Exception as e:
             raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
+
+    async def buscaUsuarioLogin(login: str, db: Session = Depends(get_db)):
+        try:
+            usuario = db.query(Usuarios).filter(Usuarios.LOGIN == login).first()
+            if not usuario:
+                raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Usuário não encontrado")
+            return usuario
+        except Exception as e:
+            raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
