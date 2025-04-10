@@ -7,8 +7,8 @@ function App() {
   return (
     <>
        <HelmetProvider>
-        <Helmet title='Recomendador'/>
-          
+        <Helmet />
+          <title>Recomendador</title>
         <RouterProvider router={router} />
       </HelmetProvider>
     </>

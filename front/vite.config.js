@@ -27,7 +27,12 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  server: {
+    watch: {
+      usePolling: true, 
+    },
+  },
   optimizeDeps: {
-    exclude: ['domain'], // Exclui o módulo 'domain'
+    exclude: ['domain'], 
   },
 })
