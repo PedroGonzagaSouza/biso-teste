@@ -27,6 +27,8 @@ export function Navbar({ className }) {
         <MenubarContent>
           <MenubarItem>
             <NavbarLink name="Cadastrar usuário" to="cadastro" className="text-black"/>
+            <NavbarLink name="login" to="login" className="text-black"/>
+
           </MenubarItem>
           <MenubarItem>
             Redo <MenubarShortcut>⇧⌘Z</MenubarShortcut>

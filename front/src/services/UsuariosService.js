@@ -16,6 +16,39 @@ class UsuarioService {
 
     }
 
+    async login(credentials) {
+        try {
+            const response = await API.post(`${CONTEXT}/login`, credentials);
+            const { access_token } = response.data;
+
+            // Armazena o token no localStorage
+            localStorage.setItem('access_token', access_token);
+
+            return response.data;
+        } catch (error) {
+            console.error('Erro ao fazer login:', error);
+            throw error.response?.data || error.message;
+        }
+    }
+
+    // Método para obter o perfil do usuário logado
+    async getProfile() {
+        try {
+            const token = localStorage.getItem('access_token');
+            if (!token) throw new Error('Token não encontrado');
+
+            const response = await API.get(`${CONTEXT}/me`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            return response.data;
+        } catch (error) {
+            console.error('Erro ao obter perfil:', error);
+            throw error.response?.data || error.message;
+        }
+    }
 
 }
 

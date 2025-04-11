@@ -1,11 +1,12 @@
 import path from "path";
 import React from "react";
-import { createBrowserRouter } from "react-router";
 import { createHashRouter } from "react-router-dom";
 import { AppLayout } from "./pages/_layouts/app";
 import { HomePage } from "./pages/home/homepage";
 import { RecommendationsPage } from "./pages/teste/teste";
 import { CadastroPage } from "./pages/perfil/cadastroPage";
+import { LoginPage } from "./pages/perfil/loginPage";
+import { ProtectedRoute } from "./protectedRoute";
 // createBrowserRouter([
 //     {
 //         path: "/",
@@ -32,10 +33,12 @@ export const router = createHashRouter([
         children: [
             { path: "/", element: <HomePage /> },
             {
-                path: "/teste", element: <RecommendationsPage />
+                path: "/teste", element: <ProtectedRoute> <RecommendationsPage /></ProtectedRoute>
             },
-            {path: "/cadastro", element: <CadastroPage />},
+            { path: "/cadastro", element: <CadastroPage /> },
+            { path: "/login", element: <LoginPage /> },
+
         ]
     }
-    
+
 ])
