@@ -2,7 +2,7 @@ from pydantic import BaseModel, ValidationError
 
 
 class UsuariosBase(BaseModel):
-    NOME: str
+    NOME: str | None = None
     SENHA: str
     LOGIN: str
     
