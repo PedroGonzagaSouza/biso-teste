@@ -19,6 +19,8 @@ class LoginResponse(BaseModel):
     access_token: str
     token_type: str = "bearer"
     user: str
+    nome: str
+    id: int
 
     class Config:
         from_attributes = True
