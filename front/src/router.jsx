@@ -3,7 +3,7 @@ import React from "react";
 import { createHashRouter } from "react-router-dom";
 import { AppLayout } from "./pages/_layouts/app";
 import { HomePage } from "./pages/home/homepage";
-import { RecommendationsPage } from "./pages/teste/teste";
+import { RecommendationsPage } from "./pages/recomendacoes/recomendacoesPage";
 import { CadastroPage } from "./pages/perfil/cadastroPage";
 import { LoginPage } from "./pages/perfil/loginPage";
 import { ProtectedRoute } from "./protectedRoute";
@@ -33,7 +33,7 @@ export const router = createHashRouter([
         children: [
             { path: "/", element: <HomePage /> },
             {
-                path: "/teste", element: <ProtectedRoute> <RecommendationsPage /></ProtectedRoute>
+                path: "/recomendacoes", element: <ProtectedRoute> <RecommendationsPage /></ProtectedRoute>
             },
             { path: "/cadastro", element: <CadastroPage /> },
             { path: "/login", element: <LoginPage /> },
