@@ -199,7 +199,7 @@ class TratamentoController:
             hibrido_df = hibrido_df[['movieId', 'title_x', 'title_y', 'genres_x', 'genres_y', 'year_x', 'year_y', 'similarity_score', 'content_score', 'final_score']]
 
             # Ordenar pelas pontuações finais
-            hibrido_df = hibrido_df.sort_values(by='final_score', ascending=False).head(10)
+            hibrido_df = hibrido_df.sort_values(by='final_score', ascending=False).head(15)
 
             return hibrido_df.to_dict(orient='records')
         except Exception as e:
