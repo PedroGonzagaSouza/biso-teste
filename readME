@@ -1,0 +1,112 @@
+
+---
+
+## 🚀 Funcionalidades
+
+### Backend (API)
+- **Endpoints**:
+  - `/api/filmes`: Retorna a lista de filmes disponíveis.
+  - `/api/filmes/{usuario_id}/recomendacoes`: Retorna recomendações personalizadas para o usuário.
+  - `/api/tratamento/recomendacao/{filme}`: Retorna recomendações baseadas em um filme específico.
+- **Banco de Dados**:
+  - Tabelas: `FILMES`, `RATINGS`, `TAGS`, `USUARIOS`.
+  - Populado automaticamente com dados de exemplo ao iniciar o servidor.
+
+### Frontend
+- **Páginas**:
+  - **Home**: Página inicial do sistema.
+  - **Filmes**: Lista de filmes disponíveis.
+  - **Recomendações**: Recomendações personalizadas para o usuário.
+  - **Assistidos**: Lista de filmes assistidos pelo usuário.
+  - **Login/Cadastro**: Autenticação de usuários.
+- **Componentes**:
+  - `CardFilmes`: Exibe informações de um filme.
+  - `PaginationComponente`: Paginação para listas de filmes.
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+### Backend
+- **FastAPI**: Framework para criação de APIs.
+- **SQLite**: Banco de dados leve e integrado.
+- **Pandas**: Manipulação de dados.
+- **Scikit-learn**: Algoritmos de recomendação.
+
+### Frontend
+- **React**: Biblioteca para construção de interfaces.
+- **Vite**: Ferramenta de build rápida.
+- **Tailwind CSS**: Estilização.
+- **React Router**: Gerenciamento de rotas.
+
+---
+
+## 📦 Instalação
+
+### Backend
+1. Navegue até a pasta `api/`:
+   ```bash
+   cd api
+
+2. Crie um ambiente virtual
+   ```bash
+  python -m venv venv
+  source venv/bin/activate  # Linux/Mac
+  venv\Scripts\activate     # Windows
+
+3. Instale as dependências:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Inicie o servidor:
+   ```bash
+   fastapi dev server.py 
+   ou
+   uvicorn server:app --reload
+   ```
+5. Acesse a API em `http://localhost:8000`.
+6. Acesse a documentação da API em `http://localhost:8000/docs`.
+
+### Frontend
+1. Navegue até a pasta `front/`:
+   ```bash
+   cd front/
+   ```
+
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
+
+3. Inicie o servidor:
+   ```bash
+   npm run dev
+   ```
+4. Acesse o frontend em `http://localhost:5173`.
+
+
+📚 Estrutura do Banco de Dados
+      Tabelas
+
+      ° FILMES:
+      MOVIEID: ID do filme.
+      TITLE: Título do filme.
+      GENRES: Gêneros do filme.
+      YEAR: Ano de lançamento.
+
+      ° RATINGS:
+      USERID: ID do usuário.
+      MOVIEID: ID do filme.
+      RATING: Avaliação do filme.
+
+      ° USUARIOS:
+      USERID: ID do usuário.
+      NOME: Nome do usuário.
+      LOGIN: Login do usuário.
+      SENHA: Senha do usuário.
+
+📖 Licença
+Este projeto é de uso educacional e não possui uma licença específica.
+
+👨‍💻 Autor
+Pedro Gonzaga
