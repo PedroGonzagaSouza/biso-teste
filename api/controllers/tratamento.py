@@ -21,8 +21,7 @@ class TratamentoController:
            
             return recomendacoes[filme].sort_values(ascending=False).head(10).to_dict()
         except Exception as e:
-            print("Erro ao criar DataFrame" , e)
-            raise e
+            raise("Erro ao criar DataFrame" , e)
    
     async def tratamento_usuario(filmes: list, ratings: list, usuario_id: int) -> list:
         try:

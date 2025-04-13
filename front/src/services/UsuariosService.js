@@ -36,7 +36,6 @@ class UsuarioService {
         try {
             localStorage.removeItem('access_token');
             sessionStorage.removeItem('access_token');
-            console.log("Logout realizado com sucesso.");
         } catch (error) {
             console.error('Erro ao fazer logout:', error);
             throw error.message;

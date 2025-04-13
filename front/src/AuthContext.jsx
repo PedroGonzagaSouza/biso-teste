@@ -12,21 +12,17 @@ export function AuthProvider({ children }) {
     const login = async (credentials) => {
         try {
             const response = await UsuariosService.login(credentials);
-            console.log('Resposta do login:', response);
 
             // Armazena o token no localStorage e sessionStorage
             localStorage.setItem('access_token', response.access_token);
             sessionStorage.setItem('access_token', response.access_token);
 
             const token = localStorage.getItem('access_token') || sessionStorage.getItem('access_token');
-            console.log('Token armazenado:', token);
             if (token) {
                 const decoded = jwtDecode(token);
-                console.log('Token decodificado:', decoded);
 
                 // Busca informações completas do usuário na API
                 const userProfile = await UsuariosService.getProfile();
-                console.log('Perfil do usuário:', userProfile);
 
                 // Atualiza o estado do usuário
                 setUser({ ...userProfile, login: decoded.sub });
@@ -40,17 +36,14 @@ export function AuthProvider({ children }) {
     // Função para carregar o usuário logado
     const loadUser = async () => {
         const token = localStorage.getItem('access_token') || sessionStorage.getItem('access_token');
-        console.log('Token encontrado:', token);
 
         if (token) {
             try {
                 // Decodifica o token JWT
                 const decoded = jwtDecode(token);
-                console.log('Token decodificado:', decoded);
 
                 // Busca informações completas do usuário na API
                 const userProfile = await UsuariosService.getProfile();
-                console.log('Perfil do usuário:', userProfile);
 
                 // Atualiza o estado do usuário
                 setUser({ ...userProfile, login: decoded.sub });
@@ -59,7 +52,7 @@ export function AuthProvider({ children }) {
                 logout(); // Remove o token em caso de erro
             }
         } else {
-            console.log('Nenhum token encontrado.');
+            console.error('Nenhum token encontrado.');
         }
         setLoading(false); // Finaliza o carregamento
     };

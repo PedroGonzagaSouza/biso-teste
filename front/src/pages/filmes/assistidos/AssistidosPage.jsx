@@ -34,7 +34,6 @@ export function AssistidosPage() {
 
   const onChangeNota = rating => {
     setRatings(rating)
-    console.log(rating, ',ssss')
   }
 
   useEffect(() => {
@@ -54,7 +53,6 @@ export function AssistidosPage() {
   }, []);
 
   useEffect(() => {
-    console.log('res', ratings)
     const fetchFilmesAssistidos = async () => {
       try {
         const response = await RatingsServices.getAllByUserId(user.id);

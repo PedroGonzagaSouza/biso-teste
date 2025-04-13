@@ -15,7 +15,6 @@ export function CadastroPage() {
   const [message, setMessage] = useState('');
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form Data:', formData);
     try {
       const respose = await UsuariosService.postNovoUsuario({
         NOME: formData.nome,
@@ -23,7 +22,6 @@ export function CadastroPage() {
         SENHA: formData.senha,
       })
       setMessage("Usuário cadastrado com sucesso!");
-      console.log("Usuário cadastrado com sucesso!", respose);
     } catch (error) {
       setMessage('Erro ao cadastrar usuário: ' + error.message);
       console.error('Erro ao cadastrar usuário:', error);

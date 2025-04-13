@@ -20,6 +20,8 @@ export function CardFilmes({ idFilme, nota, onChangeNota, titulo }) {
                 if (idFilme) {
 
                     const response = await FilmesServices.getById(idFilme);
+                    const existingRating = await RatingsServices.getRatingByUserIdAndMovieId(user.id, idFilme);
+                    setExistingRating(existingRating)
                     setFilme(response);
                 }
                 setLoading(false);
@@ -32,26 +34,10 @@ export function CardFilmes({ idFilme, nota, onChangeNota, titulo }) {
         fetchFilme();
     }, [idFilme, ratings]);
 
-    // const rating = async () => {
-    //     try {
-    //         const nota = {
-    //             MOVIEID: filme.MOVIEID,
-    //             USERID: user.id,
-    //             RATING: ratings.rating, // Nota selecionada
-    //         };
-    //         console.log("Nota enviada:", nota);
-    //         onChangeNota(ratings.rating)
-
-    //         await RatingsServices.updateRating(nota);
-    //     } catch (error) {
-    //         console.error('Erro ao enviar nota:', error);
-    //     }
-    // };
     const rating = async () => {
         try {
             // Verificar se já existe uma nota para o filme
             const existingRating = await RatingsServices.getRatingByUserIdAndMovieId(user.id, filme.MOVIEID);
-            console.log(existingRating, 'existe')
             const nota = {
                 MOVIEID: filme.MOVIEID,
                 USERID: user.id,
@@ -60,11 +46,9 @@ export function CardFilmes({ idFilme, nota, onChangeNota, titulo }) {
 
             if (existingRating.RATING !== null) {
                 // Atualizar a nota existente
-                console.log("Atualizando nota:", nota);
                 await RatingsServices.updateRating(nota);
             } else {
                 // Inserir uma nova nota
-                console.log("Criando nova nota:", nota);
                 await RatingsServices.createRating(nota);
             }
 
@@ -86,7 +70,7 @@ export function CardFilmes({ idFilme, nota, onChangeNota, titulo }) {
         if (ratings.rating) {
             rating()
         }
-    }, [ratings])
+    }, [ratings, existingRating])
 
     return (<>
         <Card>
@@ -102,7 +86,7 @@ export function CardFilmes({ idFilme, nota, onChangeNota, titulo }) {
                             {filme.MOVIEID} {filme.TITLE} {filme.YEAR}
                         </div>
                         <StarRating
-                            rating={nota}
+                            rating={nota || existingRating?.RATING}
                             onRatingChange={(rating) => handleRatingChange(filme.MOVIEID, rating)}
                         />
                     </CardContent>

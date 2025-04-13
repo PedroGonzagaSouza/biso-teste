@@ -36,7 +36,6 @@ async def getCurrentUser(token: str = Depends(oauth2_scheme), db: Session = Depe
         user = await UsuariosController.buscaUsuarioLogin(payload["sub"], db)
         if not user:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Usuário não encontrado")
-        print(user)
         return user
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Token inválido")

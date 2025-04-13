@@ -49,12 +49,10 @@ export function RecomendacoesPage() {
       fetchFilmesAssistidos(); // Atualiza os filmes assistidos quando a nota muda
     }
   }, [ratings, user.id]);
-  // Executa quando `ratings` ou `user.id` mudar
+
+  
   return (
     <div className="min-h-screen">
-      {/* Header */}
-
-
       {/* Recommendations Section */}
       <main className="container mx-auto px-4 py-8">
         <h2 className="text-2xl font-semibold mb-6 text-slate-400">Assistidos</h2>

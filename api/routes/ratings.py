@@ -30,7 +30,6 @@ async def busca_ratings_por_usuario(usuario_id: int, db: Session = Depends(get_d
 async def busca_rating(usuario_id: int, movie_id: int, db: Session = Depends(get_db)):
     try:
         rating = await RatingsController.getRatingByUserAndMovie(usuario_id, movie_id, db)
-        print(rating)
         if not rating:
             return None
         return rating
