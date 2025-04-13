@@ -14,3 +14,7 @@ class FilmesResponse(FilmesBase):
     
     class Config:
         from_attributes = True
+        
+class FilmesPaginatedResponse(BaseModel):
+    total: int
+    filmes: list[FilmesResponse]

@@ -6,7 +6,7 @@ from ..controllers.ratings import RatingsController
 from ..schemas.ratings import RatingsResponse, RatingsRequest
 
 router = APIRouter(
-    prefix="/api/rating",
+    prefix="/api/ratings",
     tags=["Ratings"]
 )
 
@@ -18,7 +18,7 @@ async def busca_todos_ratings(db: Session = Depends(get_db)):
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
     
-@router.get("/{usuario_id}", response_model=list[RatingsResponse], status_code=status.HTTP_200_OK)
+@router.get("/user/{usuario_id}", response_model=list[RatingsResponse], status_code=status.HTTP_200_OK)
 async def busca_ratings_por_usuario(usuario_id: int, db: Session = Depends(get_db)):
     try:
         ratings = await RatingsController.getAllRatingsByUser(usuario_id, db)
@@ -26,13 +26,16 @@ async def busca_ratings_por_usuario(usuario_id: int, db: Session = Depends(get_d
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
     
-@router.get("/{usuario_id}/{movie_id}", response_model=RatingsResponse, status_code=status.HTTP_200_OK)
+@router.get("/user/{usuario_id}/filme/{movie_id}", response_model=RatingsResponse, status_code=status.HTTP_200_OK)
 async def busca_rating(usuario_id: int, movie_id: int, db: Session = Depends(get_db)):
     try:
         rating = await RatingsController.getRatingByUserAndMovie(usuario_id, movie_id, db)
+        print(rating)
+        if not rating:
+            return None
         return rating
     except Exception as e:
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
+        return {"ratings": None}
     
 @router.post("/", response_model=RatingsResponse, status_code=status.HTTP_201_CREATED)
 async def cria_rating(rating: RatingsRequest, db: Session = Depends(get_db)):
