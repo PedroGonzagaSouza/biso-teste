@@ -83,6 +83,11 @@ git clone -c http.SslVerify=false https://github.com/PedroGonzagaSouza/biso-test
    npm install
    ```
 
+  Talvez seja necessário usar o comando: 
+    ```bash
+    npm install --legacy-peer-deps
+    ```
+
 3. Inicie o servidor:
    ```bash
    npm run dev
