@@ -33,7 +33,6 @@ export function FilmesPage() {
         }
     }
 
-
     useEffect(() => {
         const fetch = async () => {
             await fetchFilmes()
@@ -51,10 +50,17 @@ export function FilmesPage() {
 
     const totalPages = Math.ceil(filmes.total / moviesPerPage)
 
+<<<<<<< HEAD
 
     const onChangeNota = rating => {
         setRatings(rating)
     }
+=======
+ 
+  const onChangeNota = rating => {
+    setRatings(rating)
+  }
+>>>>>>> c41aeeec06336971acad87eef6b8fc208507a25d
 
     return (<>
         <div className="h-screen min-h-screen">
