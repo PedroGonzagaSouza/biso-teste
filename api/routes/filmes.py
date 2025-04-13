@@ -28,10 +28,10 @@ async def busca_filme_id(id: int, db: Session = Depends(get_db)):
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
     
-@router.get("/title/{titulo}", response_model=list[FilmesResponse], status_code=status.HTTP_200_OK)
-async def busca_filme_titulo(titulo: str, db: Session = Depends(get_db)):
+@router.get("/title/{titulo}/{offset}/{limit}", response_model=FilmesPaginatedResponse, status_code=status.HTTP_200_OK)
+async def busca_filme_titulo(titulo: str, offset: int = 0, limit: int = 10, db: Session = Depends(get_db)):
     try:
-        filme = await FilmesControllers.getFilmesByTitle(db, titulo)
+        filme = await FilmesControllers.getFilmesByTitle(db, titulo, offset, limit)
         return filme
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))

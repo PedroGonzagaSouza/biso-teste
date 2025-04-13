@@ -36,13 +36,15 @@ class FilmesControllers:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Filme não encontrado")
         return filme
     
-    async def getFilmesByTitle(db: Session, titulo: str) -> list[Filmes]:
+    async def getFilmesByTitle(db: Session, titulo: str, offset: int = 0, limit: int = 10) -> list[Filmes]:
        #get filme por titulo
        #manda um LIKE pro SQL e traz uma lista com os nomes parecidos, precisa de atenção
-        filmes = db.query(Filmes).filter(Filmes.TITLE.ilike(f"%{titulo}%")).all()
+        filmes = db.query(Filmes).filter(Filmes.TITLE.ilike(f"%{titulo}%")).offset(offset).limit(limit).all()
+        total = db.query(Filmes).count()
+        
         if not filmes:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Filme não encontrado")
-        return filmes
+        return {"total": total, "filmes": filmes}
     
     async def getFilmesByUser(db: Session, usuario_id: int) -> list[Filmes]:
         #get filme por usuario

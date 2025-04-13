@@ -29,9 +29,9 @@ class FilmesService {
         }
     }
 
-    async getByTitle(title) {
+    async getByTitle(offset, limit, title) {
         try {
-            const response = await API.get(`${CONTEXT}/title/${title}`);
+            const response = await API.get(`${CONTEXT}/title/${title}/${offset}/${limit}`);
             if (response.status === 200) {
                 return response.data;
             }

@@ -13,7 +13,6 @@ export function CardFilmes({ idFilme, nota, onChangeNota, titulo }) {
     const [loading, setLoading] = useState(true);
     const [ratings, setRatings] = useState(nota || 0)
     const [existingRating, setExistingRating] = useState(null)
-
     useEffect(() => {
         const fetchFilme = async () => {
             try {
@@ -43,6 +42,7 @@ export function CardFilmes({ idFilme, nota, onChangeNota, titulo }) {
                 USERID: user.id,
                 RATING: ratings.rating, // Nota selecionada
             };
+            onChangeNota(ratings.rating);
 
             if (existingRating.RATING !== null) {
                 // Atualizar a nota existente
@@ -51,8 +51,8 @@ export function CardFilmes({ idFilme, nota, onChangeNota, titulo }) {
                 // Inserir uma nova nota
                 await RatingsServices.createRating(nota);
             }
+            // window.location.reload(); // Recarregar a página após enviar a nota
 
-            onChangeNota(ratings.rating);
         } catch (error) {
             console.error('Erro ao enviar nota:', error);
         }
@@ -67,10 +67,10 @@ export function CardFilmes({ idFilme, nota, onChangeNota, titulo }) {
     };
 
     useEffect(() => {
-        if (ratings.rating) {
+        if (ratings?.rating) {
             rating()
         }
-    }, [ratings, existingRating])
+    }, [ratings])
 
     return (<>
         <Card>
@@ -86,7 +86,7 @@ export function CardFilmes({ idFilme, nota, onChangeNota, titulo }) {
                             {filme.MOVIEID} {filme.TITLE} {filme.YEAR}
                         </div>
                         <StarRating
-                            rating={nota || existingRating?.RATING}
+                            rating={nota || existingRating?.RATING || 0}
                             onRatingChange={(rating) => handleRatingChange(filme.MOVIEID, rating)}
                         />
                     </CardContent>
