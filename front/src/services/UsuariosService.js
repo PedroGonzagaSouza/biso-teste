@@ -4,24 +4,25 @@ const CONTEXT = '/usuario';
 
 class UsuarioService {
 
-    postNovoUsuario = async (params) => {
+    // async postNovoUsuario(params) {
 
-        try {
-            const response = await API.post(`${CONTEXT}/create`, params);
-            return response.data;
-        } catch (error) {
-            console.error('Erro ao cadastrar usuário:', error);
-            throw error;
-        }
+    //     try {
+    //         const response = await API.post(`${CONTEXT}/create`, params);
+    //         return response.data;
+    //     } catch (error) {
+    //         console.error('Erro ao cadastrar usuário:', error);
+    //         throw error;
+    //     }
 
-    }
+    // }
 
     async login(credentials) {
         try {
             const response = await API.post(`${CONTEXT}/login`, credentials);
             const { access_token } = response.data;
-
-            // Armazena o token no localStorage
+            // Armazena o token no sessionStorage
+            sessionStorage.setItem('access_token', access_token);
+            // Armazena o token no localStorage 
             localStorage.setItem('access_token', access_token);
 
             return response.data;
@@ -31,10 +32,23 @@ class UsuarioService {
         }
     }
 
+    async logout() {
+        try {
+            localStorage.removeItem('access_token');
+            sessionStorage.removeItem('access_token');
+            console.log("Logout realizado com sucesso.");
+        } catch (error) {
+            console.error('Erro ao fazer logout:', error);
+            throw error.message;
+
+        }
+    }
+
     // Método para obter o perfil do usuário logado
     async getProfile() {
         try {
-            const token = localStorage.getItem('access_token');
+
+            const token = localStorage.getItem('access_token') || sessionStorage.getItem('access_token');
             if (!token) throw new Error('Token não encontrado');
 
             const response = await API.get(`${CONTEXT}/me`, {
@@ -50,6 +64,15 @@ class UsuarioService {
         }
     }
 
+    async postNovoUsuario(user) {
+        try {
+            const response = await API.post(`${CONTEXT}/create/hash`, user);
+            return response.data;
+        } catch (error) {
+            console.error('Erro ao cadastrar usuário:', error);
+            throw error.response?.data || error.message;
+        }
+    }
 }
 
 export default new UsuarioService()

@@ -21,7 +21,7 @@ export function Header() {
             <div>
                 <Navbar className="justify-center gap-20 border-0" />
             </div>
-            <div className="gap-2 flex items-center">
+            <div className="gap-10 flex items-center">
                 <div className="flex items-center gap-2"><img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="User Avatar" className="w-10 h-10 rounded-full" />
                     {user && <span className="text-sm font-bold text-white">{user?.nome}</span>} {!user && <NavbarLink name='Entrar' to='/login' />}</div>
                 {user && <Button className="bg-red-500 text-white p-1 text-sm rounded hover:bg-red-600 transition duration-200" onClick={handleLogout}> Logout</Button>}

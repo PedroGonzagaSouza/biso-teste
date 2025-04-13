@@ -20,6 +20,8 @@ export function Navbar({ className }) {
   return (
     <Menubar className={cn("", className)}>
       <NavbarLink name="Home" to="/" className="text-black-700 hover:text-black-900 dark:text-black-200 dark:hover:text-black" />
+      <NavbarLink name="Filmes" to="/filmes" className="text-black-700 hover:text-black-900 dark:text-black-200 dark:hover:text-black" />
+      <NavbarLink name="Assistidos" to="/assistidos" className="text-black-700 hover:text-black-900 dark:text-black-200 dark:hover:text-black" />
       <NavbarLink name="Recomendações" to="/recomendacoes" className="text-black-700 hover:text-black-900 dark:text-black-200 dark:hover:text-black" />
 
       <MenubarMenu>

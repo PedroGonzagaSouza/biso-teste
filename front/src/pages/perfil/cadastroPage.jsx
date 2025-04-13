@@ -47,7 +47,7 @@ export function CadastroPage() {
               name="nome"
               value={formData.nome}
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 border text-black  rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Digite seu nome de usuário"
               required
             />
@@ -63,7 +63,7 @@ export function CadastroPage() {
               name="login"
               value={formData.login}
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 border text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Digite seu login"
               required
             />
@@ -79,7 +79,7 @@ export function CadastroPage() {
               name="senha"
               value={formData.senha}
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full text-black  px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Digite sua senha"
               required
             />

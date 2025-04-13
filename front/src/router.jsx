@@ -3,28 +3,12 @@ import React from "react";
 import { createHashRouter } from "react-router-dom";
 import { AppLayout } from "./pages/_layouts/app";
 import { HomePage } from "./pages/home/homepage";
-import { RecommendationsPage } from "./pages/recomendacoes/recomendacoesPage";
+import { RecomendacoesPage } from "./pages/filmes/recomendacoes/recomendacoesPage";
+import { AssistidosPage } from "./pages/filmes/assistidos/AssistidosPage";
 import { CadastroPage } from "./pages/perfil/cadastroPage";
 import { LoginPage } from "./pages/perfil/loginPage";
 import { ProtectedRoute } from "./protectedRoute";
-// createBrowserRouter([
-//     {
-//         path: "/",
-//         Component: Root,
-//         children: [
-//             { index: true, Component: Home },
-//             { path: "about", Component: About },
-//             {
-//                 path: "auth",
-//                 Component: AuthLayout,
-//                 children: [
-//                     { path: "login", Component: Login },
-//                     { path: "register", Component: Register },
-//                 ],
-//             },
-//         ],
-//     },
-// ]);
+import { FilmesPage } from "./pages/filmes/FilmesPage";
 
 export const router = createHashRouter([
     {
@@ -33,7 +17,13 @@ export const router = createHashRouter([
         children: [
             { path: "/", element: <HomePage /> },
             {
-                path: "/recomendacoes", element: <ProtectedRoute> <RecommendationsPage /></ProtectedRoute>
+                path: "/assistidos", element: <ProtectedRoute> <AssistidosPage /></ProtectedRoute>
+            },
+            {
+                path: "/recomendacoes", element: <ProtectedRoute> <RecomendacoesPage /></ProtectedRoute>
+            },
+            {
+                path: "/filmes", element: <ProtectedRoute> <FilmesPage /></ProtectedRoute>
             },
             { path: "/cadastro", element: <CadastroPage /> },
             { path: "/login", element: <LoginPage /> },

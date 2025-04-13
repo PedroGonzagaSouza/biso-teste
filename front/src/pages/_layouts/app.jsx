@@ -4,9 +4,9 @@ import { Outlet } from "react-router-dom"
 import { Header } from "@/components/header/Header"
 export function AppLayout() {
     return (
-        <div className="min-w-[calc(screen - 10px)] min-h-screen overflow-hidden antialiased font-sans bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-200">
+        <div className="min-w-[calc(screen - 10px)] min-h-screen overflow-hidden antialiased font-sans bg-gray-100  dark:bg-gray-900 text-gray-900 dark:text-gray-200">
             <header className="h-15"><Header /></header>
-            <div className="grid min-h-screengrid-rows-1 overflow-hidden ">
+            <div className="grid min-h-screen grid-rows-1 overflow-hidden   bg-gray-100">
                 <PageContainer>
                     <Outlet />
                 </PageContainer>

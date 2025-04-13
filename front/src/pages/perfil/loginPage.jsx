@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '@/AuthContext';
-
+import { NavbarLink } from '@/components/header/navbar/navbar-link';
 export function LoginPage() {
   const { user, login, logout } = useContext(AuthContext);
 
@@ -87,6 +87,11 @@ export function LoginPage() {
             </button>
           </div>
         )}
+
+        <div className='flex flex-row justify-center items-center gap-2 pt-5'>
+          {!user && <NavbarLink name={"Novo por aqui? Clique aqui para se cadastrar."} to="/cadastro" className=" text-slate-400 hover:text-black"/>}
+
+        </div>
       </div>
     </div>
   );
