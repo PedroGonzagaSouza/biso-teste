@@ -41,6 +41,11 @@
 
 ---
 
+
+## Clonar projeto
+
+```bash
+git clone -c http.SslVerify=false https://github.com/PedroGonzagaSouza/biso-teste.git
 ## 📦 Instalação
 
 ### Backend
