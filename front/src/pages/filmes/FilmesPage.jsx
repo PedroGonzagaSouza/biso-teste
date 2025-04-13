@@ -1,15 +1,13 @@
 import React, { useEffect, useContext, useState } from 'react'
 import { PaginationComponente } from '@/components/Pagination'
 import FilmesServices from '@/services/FilmesServices'
-import { Card, CardContent } from "@/components/ui/card"
-import { StarRating } from '@/components/StarRating'
 import { CardFilmes } from './components/cardFilmes'
 export function FilmesPage() {
     const [filmes, setFilmes] = useState({ filmes: [], total: 0 })
     const [currentPage, setCurrentPage] = useState(1)
-    const [moviesPerPage] = useState(10)
-    const [ratings, setRatings] = useState(0)
-
+    const [moviesPerPage] = useState(15)
+    const [ratings, setRatings] = useState(null)
+    
     const fetchFilmes = async () => {
         try {
             const response = await FilmesServices.getAll((currentPage - 1) * moviesPerPage, moviesPerPage)
@@ -18,9 +16,6 @@ export function FilmesPage() {
             console.error('Error fetching filmes:', error)
         }
     }
-  useEffect(() => {
-
-  }, [ratings]);
 
     useEffect(() => {
         const fetch = async () => {
@@ -39,7 +34,7 @@ export function FilmesPage() {
 
     const totalPages = Math.ceil(filmes.total / moviesPerPage)
 
-    
+ 
   const onChangeNota = rating => {
     setRatings(rating)
   }
